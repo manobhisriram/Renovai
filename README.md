@@ -2,7 +2,6 @@
 
 **An agentic AI platform that turns a client's photos and a plain-language request into a defensible, versioned renovation quote, which a human approves before anything reaches the client or the CRM.**
 
-[![CI](https://github.com/manobhisriram/Renovai/actions/workflows/ci.yml/badge.svg)](https://github.com/manobhisriram/Renovai/actions/workflows/ci.yml)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Python 3.12](https://img.shields.io/badge/python-3.12-blue.svg)
 ![Node 22](https://img.shields.io/badge/node-22-green.svg)
