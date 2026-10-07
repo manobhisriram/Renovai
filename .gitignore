@@ -1,0 +1,40 @@
+# secrets and local config
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+service-account*.json
+credentials*.json
+# python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+# node
+node_modules/
+frontend/dist/
+# local data (databases, vector store, uploads, checkpoints)
+*.db
+*.sqlite
+*.sqlite3
+backend/qdrant_data/
+backend/uploads/
+backend/renovai_checkpoints.db
+# terraform
+infra/terraform/.terraform/
+infra/terraform/*.tfstate
+infra/terraform/*.tfstate.*
+infra/terraform/*.tfvars
+!infra/terraform/terraform.tfvars.example
+infra/terraform/crash.log
+# editors / OS
+.idea/
+.vscode/
+.DS_Store
+*.log

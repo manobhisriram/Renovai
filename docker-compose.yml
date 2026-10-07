@@ -1,0 +1,74 @@
+# Full local stack:  cp .env.example .env  (edit)  &&  docker compose up --build
+# Then seed sample data once:  docker compose run --rm backend python -m scripts.seed
+# UI: http://localhost:8080   API docs (dev only): http://localhost:8000/docs
+name: renovai
+
+x-backend-env: &backend-env
+  env_file: .env
+  environment:
+    DATABASE_URL: postgresql://${POSTGRES_USER:-renovai}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-renovai}
+    REDIS_URL: redis://redis:6379/0
+    QDRANT_URL: http://qdrant:6333
+    UPLOAD_DIR: /data/uploads
+    RUN_MIGRATIONS: ${RUN_MIGRATIONS:-true}
+    FORWARDED_ALLOW_IPS: ${FORWARDED_ALLOW_IPS:-*}
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-renovai}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: ${POSTGRES_DB:-renovai}
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-renovai} -d ${POSTGRES_DB:-renovai}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [internal]          # not published to the host
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]   # rate-limit counters only; nothing to persist
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    networks: [internal]
+
+  qdrant:
+    image: qdrant/qdrant:${QDRANT_IMAGE_TAG:-v1.12.4}
+    volumes: [qdrant:/qdrant/storage]
+    networks: [internal]
+
+  backend:
+    build:
+      context: ./backend
+      args:
+        INSTALL_ML: ${INSTALL_ML:-false}
+    <<: *backend-env
+    depends_on:
+      postgres: { condition: service_healthy }
+      redis: { condition: service_healthy }
+      qdrant: { condition: service_started }
+    volumes: [uploads:/data/uploads]
+    ports: ["127.0.0.1:8000:8000"]   # loopback only (dev convenience for /docs); removed in docker-compose.prod.yml
+    networks: [internal, edge]
+
+  frontend:
+    build: ./frontend
+    depends_on:
+      backend: { condition: service_healthy }
+    ports: ["8080:8080"]
+    networks: [edge]
+
+networks:
+  internal: { internal: true }     # postgres/redis/qdrant have no route to or from the internet
+  edge: {}
+
+volumes:
+  pgdata:
+  qdrant:
+  uploads:

@@ -1,0 +1,32 @@
+[project]
+name = "renovai-backend"
+version = "1.0.0"
+requires-python = ">=3.12"
+
+[tool.ruff]
+line-length = 140
+target-version = "py312"
+extend-exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "S", "SIM", "C4", "RUF"]
+ignore = [
+  "S101",   # asserts are used for type narrowing in app code and in tests
+  "S311",   # random is used only for backoff jitter, not security
+  "B008",   # FastAPI Depends() in defaults is the framework idiom
+  "E501",   # long prompt strings; formatter-free codebase
+  "RUF012", "RUF001", "RUF002", "RUF003",
+]
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S105", "S106", "S108", "S110", "B011", "E731", "B017", "E702", "S603", "S607", "RUF015"]
+"app/data/**" = ["E501"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+check_untyped_defs = true
+warn_unused_ignores = true
+warn_redundant_casts = true
+no_implicit_optional = true
+exclude = ["alembic/", "tests/"]
+plugins = ["pydantic.mypy"]

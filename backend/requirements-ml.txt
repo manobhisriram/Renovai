@@ -1,0 +1,5 @@
+# OPTIONAL production extras. NOT exercised by this repository's test-suite (the sandbox had no model downloads).
+# - sentence-transformers: semantic embeddings (EMBEDDING_PROVIDER=sentence_transformers)
+# - ultralytics: YOLO object detection layer (set CV_DETECTOR_MODEL; see docs/ai-architecture.md)
+sentence-transformers>=3,<6
+ultralytics>=8.3

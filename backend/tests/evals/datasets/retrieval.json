@@ -1,0 +1,58 @@
+[
+ {
+  "query": "modern minimalist kitchen Chennai quartz countertop",
+  "category": "kitchen_renovation",
+  "expect_any": [
+   "past_kitchen_chennai_2bhk"
+  ]
+ },
+ {
+  "query": "how to fit a kitchen quote to a lower budget value engineering",
+  "category": "kitchen_renovation",
+  "expect_any": [
+   "quote_kitchen_budget_fit"
+  ]
+ },
+ {
+  "query": "bathroom waterproofing flood test wall-hung WC",
+  "category": "bathroom_renovation",
+  "expect_any": [
+   "past_bathroom_mumbai"
+  ]
+ },
+ {
+  "query": "terrace pergola pavers planters",
+  "category": "outdoor_landscaping",
+  "expect_any": [
+   "past_outdoor_terrace_chennai"
+  ]
+ },
+ {
+  "query": "smart switches retrofit Zigbee hub cameras",
+  "category": "smart_home_upgrade",
+  "expect_any": [
+   "past_smart_home_bengaluru"
+  ]
+ },
+ {
+  "query": "quote validity warranty payment milestones",
+  "category": null,
+  "expect_any": [
+   "policy_quotation_and_approval"
+  ]
+ },
+ {
+  "query": "engineered oak flooring cove lighting wardrobe living room",
+  "category": "living_bedroom_renovation",
+  "expect_any": [
+   "past_living_bedroom_pune"
+  ]
+ },
+ {
+  "query": "granite versus quartz countertop vitrified tile",
+  "category": null,
+  "expect_any": [
+   "material_guide_tiles_and_stone"
+  ]
+ }
+]

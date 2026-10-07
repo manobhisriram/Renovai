@@ -1,0 +1,30 @@
+# nginx template: ${BACKEND_UPSTREAM} is substituted at container start (compose: http://backend:8000). Runs unprivileged on :8080.
+server {
+  listen 8080;
+  server_name _;
+  root /usr/share/nginx/html;
+  index index.html;
+  client_max_body_size 40m;   # up to 12 photos; the API enforces the real per-file limit
+
+  add_header X-Content-Type-Options "nosniff" always;
+  add_header X-Frame-Options "DENY" always;
+  add_header Referrer-Policy "no-referrer" always;
+  add_header Permissions-Policy "camera=(), microphone=(), geolocation=()" always;
+  # blob: is needed because authenticated images are displayed from blob URLs
+  add_header Content-Security-Policy "default-src 'self'; img-src 'self' blob: data:; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'" always;
+
+  location /api/ {
+    proxy_pass ${BACKEND_UPSTREAM};
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $remote_addr;   # overwrite, never append client-supplied values
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_read_timeout 120s;
+  }
+  # Metrics and docs must never be reachable through the public proxy.
+  location = /metrics { return 404; }
+  location = /ready   { return 404; }
+
+  location /assets/ { expires 1y; add_header Cache-Control "public, immutable"; try_files $uri =404; }
+  location / { try_files $uri /index.html; add_header Cache-Control "no-store"; }
+}

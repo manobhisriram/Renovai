@@ -1,0 +1,17 @@
+[
+ {
+  "text": "Modern kitchen in Chennai, 120 sq ft, budget 8 lakh",
+  "new_budget": 500000,
+  "message": "too expensive, my budget is 5 lakh"
+ },
+ {
+  "text": "Modern kitchen in Chennai, 120 sq ft, budget 8 lakh",
+  "new_budget": 450000,
+  "message": "my budget is 4.5 lakh, I can skip the backsplash"
+ },
+ {
+  "text": "Modern kitchen in Chennai, 120 sq ft, budget 8 lakh",
+  "new_budget": 100000,
+  "message": "budget is 1 lakh"
+ }
+]

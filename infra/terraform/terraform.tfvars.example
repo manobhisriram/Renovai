@@ -1,0 +1,8 @@
+region              = "ap-south-1"
+environment         = "prod"
+domain_name         = "app.example.com"
+acm_certificate_arn = "arn:aws:acm:ap-south-1:123456789012:certificate/00000000-0000-0000-0000-000000000000"
+cors_origins        = "https://app.example.com"
+backend_image       = "123456789012.dkr.ecr.ap-south-1.amazonaws.com/renovai/backend:1.0.0"
+frontend_image      = "123456789012.dkr.ecr.ap-south-1.amazonaws.com/renovai/frontend:1.0.0"
+qdrant_url          = "https://YOUR-CLUSTER.cloud.qdrant.io:6333"

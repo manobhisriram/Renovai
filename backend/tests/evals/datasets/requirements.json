@@ -1,0 +1,73 @@
+[
+ {
+  "text": "I want a modern minimalist kitchen, budget around 8 lakh, finish in 6 weeks, about 120 sq ft in Chennai",
+  "expect": {
+   "budget": 800000,
+   "timeline_weeks": 6,
+   "desired_style": "minimalist",
+   "location": "Chennai",
+   "area_sqm": 11.1
+  }
+ },
+ {
+  "text": "Need to redo my bathroom in Mumbai, 50 sqft, I can spend 3.5 lakh",
+  "expect": {
+   "budget": 350000,
+   "location": "Mumbai",
+   "area_sqm": 4.6
+  }
+ },
+ {
+  "text": "Scandinavian living room makeover, 20 sqm, budget 12 lakh, 2 months",
+  "expect": {
+   "budget": 1200000,
+   "desired_style": "scandinavian",
+   "area_sqm": 20,
+   "timeline_weeks": 8.7
+  }
+ },
+ {
+  "text": "Looking at 1.5 crore budget for full villa interiors in Bengaluru, 3000 sq ft",
+  "expect": {
+   "budget": 15000000,
+   "location": "Bengaluru",
+   "area_sqm": 278.7
+  }
+ },
+ {
+  "text": "terrace garden in Pune, 300 sqft, rustic look, 50k budget",
+  "expect": {
+   "budget": 50000,
+   "location": "Pune",
+   "desired_style": "rustic",
+   "area_sqm": 27.9
+  }
+ },
+ {
+  "text": "Please redo my kitchen",
+  "expect": {
+   "budget": null,
+   "area_sqm": null,
+   "location": null
+  }
+ },
+ {
+  "text": "traditional style bedroom in Hyderabad, 14 sqm, within 10 weeks",
+  "expect": {
+   "desired_style": "traditional",
+   "location": "Hyderabad",
+   "area_sqm": 14,
+   "timeline_weeks": 10,
+   "budget": null
+  }
+ },
+ {
+  "text": "I have a 2 bhk flat and want industrial look, 6 weeks",
+  "expect": {
+   "desired_style": "industrial",
+   "timeline_weeks": 6,
+   "area_sqm": null,
+   "budget": null
+  }
+ }
+]

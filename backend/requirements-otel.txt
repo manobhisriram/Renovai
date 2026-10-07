@@ -1,0 +1,4 @@
+# OPTIONAL: OpenTelemetry export (set OTEL_EXPORTER_OTLP_ENDPOINT). Not exercised by the test-suite.
+opentelemetry-api>=1.27
+opentelemetry-sdk>=1.27
+opentelemetry-exporter-otlp>=1.27
